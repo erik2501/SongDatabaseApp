@@ -2,25 +2,8 @@ import Header from '../components/Header';
 import { useQuery, gql } from "@apollo/client";
 import { useEffect } from 'react';
 import { Text } from "react-native";
-
-
-const GET_SEARCH = gql`
-query Get_Search ($searchWord: String, $skip: Int, $amount:Int, $year: Int, $order: Int){
-    songSearch(skip: $skip, amount:$amount, searchWord: $searchWord, year: $year, order: $order ) {
-        songID
-        artistName
-        songName
-        imageURL
-    }
-}
-`;
-
-type Song = {
-  songID: number,
-  songName: string,
-  artistName: string,
-  imageURL: string
-}
+import { GET_SEARCH } from '../helpers/queries';
+import { Song } from '../helpers/types';
 
 export default function HomeScreen() {
 
