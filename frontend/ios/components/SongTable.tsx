@@ -44,7 +44,7 @@ const SongTable = () => {
         fetchSongs({ variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order } })
     }, [offset, order, year])
 
-    // if (error) return <ErrorPage message={`Error! ${error.message}`} />;
+    if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
         <View  >
@@ -69,11 +69,11 @@ const SongTable = () => {
 export default SongTable;
 
 
-            /* <View>
-                {(songs.length === 0 && !loading) ? console.log("No songs were found") :
-                    songs.map((song, index) => {
-                        return (
-                            <SongCard key={index} song={song} />
-                        )
-                    })}
-            </View> */
+/* <View>
+    {(songs.length === 0 && !loading) ? console.log("No songs were found") :
+        songs.map((song, index) => {
+            return (
+                <SongCard key={index} song={song} />
+            )
+        })}
+</View> */
