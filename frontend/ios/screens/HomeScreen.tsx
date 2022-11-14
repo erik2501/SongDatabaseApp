@@ -1,9 +1,8 @@
 import Header from '../components/Header';
 import { useQuery, gql } from "@apollo/client";
-import { useEffect } from 'react';
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { GET_SEARCH } from '../helpers/queries';
-import { Song } from '../helpers/types';
+import SongTable from '../components/SongTable';
 
 export default function HomeScreen() {
 
@@ -17,13 +16,15 @@ export default function HomeScreen() {
 
 
   return (
-    <>
+    <View>
       <Header/>
-      {data?.songSearch.map((song: Song) => {
+      {/* {data?.songSearch.map((song: Song) => {
         return (
           <Text>{ song.songName }</Text>
         )
-      })}
-    </>
+      })} */}
+      <SongTable/>
+      
+    </View>
   );
 }
