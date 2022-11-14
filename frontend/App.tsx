@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './ios/components/Header';
-import HomeScreen from './ios/screens/HomeScreen';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './ios/screens/HomeScreen';
 
 export default function App() {
   
@@ -18,9 +18,11 @@ export default function App() {
   
   return (
     <ApolloProvider client={client}>
-      <View style={styles.container}>
-        <HomeScreen/>
-      </View>
+      <RecoilRoot>
+        <View style={styles.container}>
+          <HomeScreen/>
+        </View>
+      </RecoilRoot>
     </ApolloProvider>
   );
 }
