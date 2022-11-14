@@ -17,11 +17,8 @@
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-<<<<<<< HEAD
     "react-native-elements": "^3.4.2",
     "react-native-paper": "^4.12.5",
-=======
->>>>>>> dev
     "recoil": "^0.7.6"
   },
   "devDependencies": {
