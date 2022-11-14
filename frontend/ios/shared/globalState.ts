@@ -23,4 +23,8 @@ export const yearAtom = atom({
 export const orderAtom = atom({
     key: 'order-atom',
     default: -1
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> dev

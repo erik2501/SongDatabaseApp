@@ -1,21 +1,26 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './ios/components/Header';
-import SearchbarComponent from './ios/components/SearchbarComponent';
-import SongCard from './ios/components/SongCard';
+import HomeScreen from './ios/screens/HomeScreen';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { RecoilRoot } from 'recoil';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function App() {
+  
+  const client = new ApolloClient({
+    uri: 'http://it2810-14.idi.ntnu.no:3001/songs',
+    cache: new InMemoryCache()
+  })
+
+  const Stack = createStackNavigator();
+  
   return (
-    <View style={styles.container}>
-      <View>
-        <View>
-          <Header></Header>
-        </View>
-        <View>
-          <SearchbarComponent value={'test'} />
-        </View>
+    <ApolloProvider client={client}>
+      <View style={styles.container}>
+        <HomeScreen/>
       </View>
-      <SongCard></SongCard>
-    </View>
+    </ApolloProvider>
   );
 }
 
