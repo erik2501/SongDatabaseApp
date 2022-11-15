@@ -1,8 +1,10 @@
 import { useQuery } from "@apollo/client";
+import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 import { Image, Dimensions, StyleSheet, Text, View } from "react-native";
-import { AirbnbRating } from "react-native-elements";
+import { AirbnbRating, Button } from "react-native-elements";
 import { GET_AVG_REVIEW_SCORE } from "../helpers/queries";
-import { Song } from "../helpers/types";
+import { RootStackParamList, Song } from "../helpers/types";
 
 
 
@@ -12,11 +14,22 @@ const windowHeight = Dimensions.get('window').height;
 const cardWidth = windowWidth * 0.9;
 const cardHeight = windowHeight * 0.2;
 
+interface SongCardProps {
+    song: Song,
+    navigation: NavigationProp<RootStackParamList, "Home">
+}
 
 
-function SongCard({ song }: { song: Song }) {
+function SongCard({ song, navigation }: SongCardProps) {
 
     const { data } = useQuery(GET_AVG_REVIEW_SCORE, { variables: { songID: song.songID } })
+    const [colSwitch, setColSwitch] = useState<boolean>(true)
+
+
+    const handleOnPressBtn = () => {
+        setColSwitch(!colSwitch)
+        navigation.navigate('SongScreen', { songID: song.songID })
+    }
 
     return (
         <View style={styles.card}>
@@ -38,24 +51,16 @@ function SongCard({ song }: { song: Song }) {
                             isDisabled={true}
                         />
                     }
+                    <Button onPress={() => handleOnPressBtn()}
+                        title='See more'
+                        buttonStyle={{
+                            backgroundColor: '#89b9cc',
+                            borderRadius: 3,
+                        }} />
                 </View>
             </View>
         </View>
     )
-
-    // return (
-    //     <View style={styles.container}>
-    //         <Card>
-    //             <Card.Content>
-    //                 <Title>{song.songName}</Title>
-    //                 <Paragraph>{song.artistName}</Paragraph>
-    //             </Card.Content>
-    //             <Card.Cover source={{ uri: song.imageURL }} />
-    //             <Card.Actions>
-    //             </Card.Actions>
-    //         </Card>
-    //     </View>
-    // )
 }
 
 const styles = StyleSheet.create({

@@ -3,31 +3,43 @@ import { Button, Text } from "react-native-elements"
 import SongDetails from "../components/SongDetails";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
+import { RootStackParamList } from "../helpers/types";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
+interface SongScreenProps {
+    route: RouteProp<RootStackParamList, "SongScreen">
+    navigation: NavigationProp<RootStackParamList, "SongScreen">
+}
 
-const SongScreen = () => {
-    const songID = 0;
+const SongScreen = ({ route, navigation }: SongScreenProps) => {
+
     const [colSwitch, setColSwitch] = useState<boolean>(true)
+
+    const handleOnPressBtn = () => {
+        setColSwitch(!colSwitch)
+        navigation.navigate('Home')
+    }
+
     return (
         <View style={styles.container}>
-            <Button 
-                onPress = {() => setColSwitch(!colSwitch) }
-                style={styles.button} 
-                title="Back to SongSearch"/>            
-            <SongDetails songID={songID}/>
+            <Button
+                onPress={() => handleOnPressBtn()}
+                style={styles.button}
+                title="Back to SongSearch" />
+            <SongDetails songID={route.params.songID} />
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#121212',
-      alignItems: 'center',
+        flex: 1,
+        backgroundColor: '#121212',
+        alignItems: 'center',
     },
-    button : {
+    button: {
         width: 150,
         paddingTop: 20,
-    }   
-  });
+    }
+});
 
 export default SongScreen;
