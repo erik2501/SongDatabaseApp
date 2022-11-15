@@ -14,9 +14,9 @@ type Style = {
 };
 
 //songDetails med hardkodet info
-const SongDetails = () => {
+const SongDetails = ({ songID }: { songID: number }) => {
 
-    const songID = 0;
+    //const songID = 0;
 
     //helpfunction from millisecond to minutes
     const msecToMin = (msec : number) => {
