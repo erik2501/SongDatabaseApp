@@ -1,3 +1,12 @@
+import { StackScreenProps } from "@react-navigation/stack";
+
+export type RootStackParamList = {
+    Home: undefined;
+    SongScreen: { songID: number };
+};
+
+export type SongScreenProps = StackScreenProps<RootStackParamList, 'SongScreen'>;
+
 export type Song = {
     songID: number,
     songName: string,
@@ -6,11 +15,11 @@ export type Song = {
 }
 
 export type SongAllData = {
-    songID : number,
-    songName : string,
-    artistName : string,
-    durationMS : number,
-    year : number,
-    energy : number, 
-    imageURL : string
+    songID: number,
+    songName: string,
+    artistName: string,
+    durationMS: number,
+    year: number,
+    energy: number,
+    imageURL: string
 }

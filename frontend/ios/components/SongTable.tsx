@@ -1,19 +1,24 @@
 import { useLazyQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { Song } from "../helpers/types";
+import { RootStackParamList, Song } from "../helpers/types";
 import ErrorPage from "../screens/ErrorPage";
 import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
 import { offsetAtom, yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
 import { ScrollView, Text, View } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+
+interface SongTableProps {
+    navigation: NavigationProp<RootStackParamList, "Home">
+}
 
 
 // definerer debounce funksjonen vår 
 // const debounceFetch = debounce((fetchFunc: () => void) => fetchFunc())
 
 // This component displays the songs on the homepage. 
-const SongTable = () => {
+const SongTable = ({ navigation }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
@@ -56,7 +61,7 @@ const SongTable = () => {
                 {songs.map((song, index) => {
                     return (
                         <View>
-                            <SongCard key={index} song={song} />
+                            <SongCard key={index} song={song} navigation={navigation} />
                         </View>
                     )
                 })}
