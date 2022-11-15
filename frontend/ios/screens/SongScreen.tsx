@@ -13,19 +13,9 @@ interface SongScreenProps {
 
 const SongScreen = ({ route, navigation }: SongScreenProps) => {
 
-    const [colSwitch, setColSwitch] = useState<boolean>(true)
-
-    const handleOnPressBtn = () => {
-        setColSwitch(!colSwitch)
-        navigation.navigate('Home')
-    }
 
     return (
         <View style={styles.container}>
-            <Button
-                onPress={() => handleOnPressBtn()}
-                style={styles.button}
-                title="Back to SongSearch" />
             <SongDetails songID={route.params.songID} />
         </View>
     )
