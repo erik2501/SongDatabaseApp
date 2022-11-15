@@ -4,3 +4,13 @@ export type Song = {
     artistName: string,
     imageURL: string
 }
+
+export type SongAllData = {
+    songID : number,
+    songName : string,
+    artistName : string,
+    durationMS : number,
+    year : number,
+    energy : number, 
+    imageURL : string
+}
