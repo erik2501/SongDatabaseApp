@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
         marginVertical: 7,
         fontSize: 20,
         fontWeight: "bold",
-        color: '#fff'
+        color: 'black'
     },
     subtitleText: {
         marginVertical: 7,
         fontSize: 15,
-        color: '#fff'
+        color: 'black'
     },
     reviewContainer: {
         justifyContent: 'center',
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: 6
     },
     errorMsg: {
-        color: '#fff'
+        color: 'black'
     }
 });
 
