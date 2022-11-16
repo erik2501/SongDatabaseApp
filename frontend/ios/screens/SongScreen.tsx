@@ -30,7 +30,7 @@ const SongScreen = ({ route, navigation }: SongScreenProps) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121212',
+        backgroundColor: '#fff',
         alignItems: 'center',
     }
 });
