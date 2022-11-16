@@ -46,6 +46,7 @@ function SongCard({ song, navigation }: SongCardProps) {
                     <Text style={styles.baseText}>{song.artistName}</Text>
                     {data && data.reviewAvgScoreBySongID.length > 0 &&
                         <AirbnbRating
+                            showRating={false}
                             size={15}
                             defaultRating={data.reviewAvgScoreBySongID[0].avgScore}
                             isDisabled={true}
