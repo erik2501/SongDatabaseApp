@@ -60,7 +60,7 @@ const SongTable = ({ navigation }: SongTableProps) => {
                 {/* have to add validation for if the list is empty */}
                 {songs.map((song, index) => {
                     return (
-                        <View>
+                        <View key={index}>
                             <SongCard key={index} song={song} navigation={navigation} />
                         </View>
                     )
