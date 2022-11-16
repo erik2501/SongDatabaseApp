@@ -13,7 +13,6 @@ const YearSelect = () => {
 
     const {data} = useQuery(GET_DISTINCT_YEARS);
     
-    console.log(year)
  /*
     //console.log(data.getDistinctYears)
 
