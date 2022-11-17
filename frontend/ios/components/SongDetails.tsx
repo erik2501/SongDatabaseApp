@@ -81,16 +81,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        backgroundColor: '#121212',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        padding: 10
     },
     container2: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     title: {
-        color : 'white',
+        color : 'black',
         textAlign: 'center',
 
     },
