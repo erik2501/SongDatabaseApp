@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { offsetAtom, searchWordAtom, yearAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
-import { Text } from "react-native";
-import { GET_SEARCH } from '../helpers/queries';
-import { Song } from '../helpers/types';
-import { useQuery } from "@apollo/client";
-
-const SongTableComponent = () => {
-
-=======
 import { useLazyQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { RootStackParamList, Song } from "../helpers/types";
@@ -34,30 +22,12 @@ const SongTable = ({ navigation }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
->>>>>>> dev
     const searchWord = useRecoilValue(searchWordAtom);
     const offset = useRecoilValue(offsetAtom);
     const year = useRecoilValue(yearAtom);
     const order = useRecoilValue(orderAtom);
     const pageSize = useRecoilValue(pageSizeAtom);
 
-<<<<<<< HEAD
-    const {data} = useQuery(GET_SEARCH, {variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order }});
-
-
-    return (
-        <>
-            {data?.songSearch.map((song: Song) => {
-                return (
-                    <Text>{ song.songName }</Text>
-                )
-            })}
-        </>
-    )
-}
-
-export default SongTableComponent;
-=======
     // this query gets the songs with the users specified filtering
     const [songs, setSongs] = useState<Song[]>([]);
     const [fetchSongs, { loading, error, data }] = useLazyQuery(GET_SEARCH);
@@ -82,15 +52,12 @@ export default SongTableComponent;
     if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
-        <View  >
-            {/* <Text>
-                {loading ? 'Loading..' : ''}
-            </Text> */}
+        <View>
             <ScrollView>
                 {/* have to add validation for if the list is empty */}
                 {songs.map((song, index) => {
                     return (
-                        <View>
+                        <View key={index}>
                             <SongCard key={index} song={song} navigation={navigation} />
                         </View>
                     )
@@ -102,14 +69,3 @@ export default SongTableComponent;
 }
 
 export default SongTable;
-
-
-/* <View>
-    {(songs.length === 0 && !loading) ? console.log("No songs were found") :
-        songs.map((song, index) => {
-            return (
-                <SongCard key={index} song={song} />
-            )
-        })}
-</View> */
->>>>>>> dev
