@@ -7,6 +7,8 @@ import { useRecoilState } from 'recoil';
 import { orderAtom } from '../shared/globalState';
 import { GET_DISTINCT_YEARS } from "../helpers/queries";
 import { Text } from "react-native-elements";
+import { Dropdown } from 'react-native-element-dropdown';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const OrderSelect = () => {
@@ -15,38 +17,73 @@ const OrderSelect = () => {
 
     //må se på offset men kommer an på hvordan paginering løses
 
-    return(
+    const items = [
+        { label: 'Newest first', value: -1 },
+        { label: 'Oldest first', value: 0 },
+    ]
+    return (
         <View >
-            <RNPickerSelect
-                value = {order}
-                placeholder={{ label: "Newest first", value: -1}}
-                onValueChange={(value)  => setOrder(parseInt(value))}
-                items={[
-                    { label: "Oldest first", value: 0 },
-                ]} 
-                style={pickerSelectStyles}
+            <Dropdown
+                value={order}
+                style={styles.dropdown}
+                maxHeight={300}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                containerStyle={styles.containerStyle}
+                itemTextStyle={styles.selectedTextStyle}
+                itemContainerStyle={styles.containerStyle}
+                iconStyle={styles.iconStyle}
+                data={items}
+                placeholder="Select item"
+                labelField={'label'}
+                valueField={'value'}
+                onChange={(item)  => setOrder(parseInt(item.value))}
+                renderLeftIcon={() => (
+                    <AntDesign style={styles.icon} color="black" name="swap" size={20} />
+                )}
             />
         </View>
-    )
-}
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 4,
-        color: 'black',
-        paddingRight: 30 // to ensure the text is never behind the icon
-    }
-});
+
+      );
+    };
+
 export default OrderSelect;
+
+const styles = StyleSheet.create({
+containerStyle: {
+    backgroundColor: 'white',
+    borderColor: 'white'
+},
+dropdown: {
+  marginTop: 30,
+  height: 50,
+  borderColor: 'black',
+  borderWidth: 1,
+  width: '100%',
+  backgroundColor: '#2F3337',
+  borderRadius: 5
+},
+icon: {
+  marginRight: 5,
+  color: '#86939E'
+},
+placeholderStyle: {
+  fontSize: 16,
+  color: 'black',
+  backgroundColor: 'black'
+},
+selectedTextStyle: {
+  fontSize: 16,
+  color: '#86939E',
+  //backgroundColor: '#2F3337'
+},
+iconStyle: {
+  width: 20,
+  height: 20,
+},
+inputSearchStyle: {
+  height: 40,
+  fontSize: 16,
+  color: 'black'
+},
+});
