@@ -48,6 +48,7 @@ function ReviewComponent({ songID }: { songID: number }) {
             />
             <Text style={styles.subtitleText}>Add star and review:  </Text>
             <AirbnbRating
+                showRating={false}
                 size={19}
                 reviewSize={15}
                 onFinishRating={setStar} />

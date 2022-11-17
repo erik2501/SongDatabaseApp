@@ -13,6 +13,7 @@ export default function ReviewCard(props: reviewProp) {
         <View style={styles.container}>
             <Text style={styles.textName}>{props.userName}</Text>
             <AirbnbRating
+                showRating={false}
                 size={19}
                 reviewSize={15}
                 defaultRating={props.star}
