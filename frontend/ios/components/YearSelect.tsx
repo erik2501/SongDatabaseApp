@@ -41,6 +41,7 @@ const YearSelect = () => {
     return (
         <View >
             <RNPickerSelect
+                value={year}
                 placeholder={{ label: "Select year", value: 0 }}
                 onValueChange={(value)  => setYear(parseInt(value))}
                 items={[

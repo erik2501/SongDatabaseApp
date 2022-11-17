@@ -52,10 +52,7 @@ const SongTable = ({ navigation }: SongTableProps) => {
     if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
-        <View  >
-            {/* <Text>
-                {loading ? 'Loading..' : ''}
-            </Text> */}
+        <View>
             <ScrollView>
                 {/* have to add validation for if the list is empty */}
                 {songs.map((song, index) => {
@@ -72,13 +69,3 @@ const SongTable = ({ navigation }: SongTableProps) => {
 }
 
 export default SongTable;
-
-
-/* <View>
-    {(songs.length === 0 && !loading) ? console.log("No songs were found") :
-        songs.map((song, index) => {
-            return (
-                <SongCard key={index} song={song} />
-            )
-        })}
-</View> */

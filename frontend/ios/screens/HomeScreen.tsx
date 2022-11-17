@@ -4,6 +4,8 @@ import { GET_SEARCH } from '../helpers/queries';
 import SongTable from '../components/SongTable';
 import { NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../helpers/types";
+import SearchbarComponent from "../components/Searchbar";
+import YearSelect from "../components/YearSelect";
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "Home">
@@ -22,6 +24,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
   return (
     <View>
+      <SearchbarComponent/>
       <SongTable navigation={navigation} />
     </View>
   );
