@@ -7,7 +7,9 @@ import BottomSheet from './BottomSheet';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import SwipeUpDownModal from 'react-native-swipe-modal-up-down';
+// import SwipeUpDownModal from 'react-native-swipe-modal-up-down';
+import YearSelect from "../components/YearSelect";
+import OrderSelect from './OrderSelect';
 
 
 // const SearchbarComponent = () => {
@@ -70,6 +72,8 @@ const SearchbarComponent = () => {
                                         onChangeText={(text) => handleSearch(text)}
                                         value={searchWord}
                                     />
+                                    <YearSelect/>
+                                    <OrderSelect/>
                                 </View>
                                 
                                 <Button

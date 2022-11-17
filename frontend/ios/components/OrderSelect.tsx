@@ -18,10 +18,10 @@ const OrderSelect = () => {
     return(
         <View >
             <RNPickerSelect
-                placeholder={{ label: "Select order", value: -1}}
+                value = {order}
+                placeholder={{ label: "Newest first", value: -1}}
                 onValueChange={(value)  => setOrder(parseInt(value))}
                 items={[
-                    { label: "Newest first", value: -1 },
                     { label: "Oldest first", value: 0 },
                 ]} 
                 style={pickerSelectStyles}
