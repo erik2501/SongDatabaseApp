@@ -1,12 +1,12 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, Modal, StyleSheet, Pressable, View, Button   } from 'react-native';
 import { SearchBar } from '@rneui/base';
 import { useRecoilState } from 'recoil';
 import { offsetAtom, searchWordAtom, yearAtom, orderAtom } from '../shared/globalState';
-import BottomSheet from './BottomSheet';
+//import BottomSheet from './BottomSheet';
 import GestureRecognizer from 'react-native-swipe-gestures';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
+//import { GestureHandlerRootView } from 'react-native-gesture-handler';
+//import { StatusBar } from 'expo-status-bar';
 // import SwipeUpDownModal from 'react-native-swipe-modal-up-down';
 import YearSelect from "../components/YearSelect";
 import OrderSelect from './OrderSelect';
