@@ -6,6 +6,9 @@ import { useQuery } from "@apollo/client";
 import { useRecoilState } from 'recoil';
 import { yearAtom } from '../shared/globalState';
 import { GET_DISTINCT_YEARS } from "../helpers/queries";
+import { Text } from "react-native-elements";
+import { Dropdown } from 'react-native-element-dropdown';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const YearSelect = () => {
 
@@ -36,60 +39,96 @@ const YearSelect = () => {
 
             items= {item}
 */    
+    const items = [        
+        { label: "All years", value: 0},            
+        { label: "1999", value: 1999 },
+        { label: "2000", value: 2000 },
+        { label: "2001", value: 2001 },
+        { label: "2002", value: 2002 },
+        { label: "2003", value: 2003 },
+        { label: "2004", value: 2004 },
+        { label: "2005", value: 2005 },
+        { label: "2006", value: 2006 },
+        { label: "2007", value: 2007 },
+        { label: "2008", value: 2008 },
+        { label: "2009", value: 2009 },
+        { label: "2010", value: 2010 },
+        { label: "2011", value: 2011 },
+        { label: "2012", value: 2012 },
+        { label: "2013", value: 2013 },                        
+        { label: "2014", value: 2014 },
+        { label: "2015", value: 2015 },                        
+        { label: "2016", value: 2016 },
+        { label: "2017", value: 2017 },
+        { label: "2018", value: 2018 },
+        { label: "2019", value: 2019 },]
 
 
-    return (
-        <View >
-            <RNPickerSelect
-                value={year}
-                placeholder={{ label: "Select year", value: 0 }}
-                onValueChange={(value)  => setYear(parseInt(value))}
-                items={[
-                    { label: "1999", value: 1999, key: 1999 },
-                    { label: "2000", value: 2000, key: 2000 },
-                    { label: "2001", value: 2001, key: 2001 },
-                    { label: "2002", value: 2002, key: 2002 },
-                    { label: "2003", value: 2003, key: 2003 },
-                    { label: "2004", value: 2004, key: 2004 },
-                    { label: "2005", value: 2005, key: 2005 },
-                    { label: "2006", value: 2006, key: 2006 },
-                    { label: "2007", value: 2007, key: 2007 },
-                    { label: "2008", value: 2008, key: 2008 },
-                    { label: "2009", value: 2009, key: 2009 },
-                    { label: "2010", value: 2010, key: 2010 },
-                    { label: "2011", value: 2011, key: 2011 },
-                    { label: "2012", value: 2012, key: 2012 },
-                    { label: "2013", value: 2013, key: 2013 },                        
-                    { label: "2014", value: 2014, key: 2014 },
-                    { label: "2015", value: 2015, key: 2015 },                        
-                    { label: "2016", value: 2016, key: 2016 },
-                    { label: "2017", value: 2017, key: 2017 },
-                    { label: "2018", value: 2018, key: 2018 },
-                    { label: "2019", value: 2019, key: 2019 },
-                ]} 
-                style={pickerSelectStyles}
-            />
-        </View>
-    )
-}
+        return (
+            <View >
+                <Dropdown
+                    value={year}
+                    style={styles.dropdown}
+                    maxHeight={300}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    itemContainerStyle={styles.containerStyle}
+                    containerStyle={styles.containerStyle}
+                    itemTextStyle={styles.selectedTextStyle}
+                    iconStyle={styles.iconStyle}
+                    data={items}
+                    placeholder="Select item"
+                    labelField={'label'}
+                    valueField={'value'}
+                    onChange={(item)  => setYear(parseInt(item.value))}
+                    renderLeftIcon={() => (
+                        <AntDesign style={styles.icon} color="black" name="calendar" size={20} />
+                    )}
+                />
+            </View>
+
+          );
+        };
+
+export default YearSelect;
+
 const styles = StyleSheet.create({
+    containerStyle: {
+        backgroundColor: '#fff',
+        borderColor: 'black'
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
-    }
-});
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 4,
-        color: 'black',
-        paddingRight: 30 // to ensure the text is never behind the icon
-    }
-});
-export default YearSelect;
+    },
+    dropdown: {
+      marginTop: 30,
+      height: 50,
+      borderColor: 'black',
+      borderWidth: 1,
+      width: '100%',
+      backgroundColor: '#2F3337',
+      borderRadius: 5
+    },
+    icon: {
+      marginRight: 5,
+      color: '#86939E'
+    },
+    placeholderStyle: {
+      fontSize: 16,
+    },
+    selectedTextStyle: {
+      fontSize: 16,
+      color: '#86939E',
+    },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
+    },
+  });
