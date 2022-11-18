@@ -38,10 +38,14 @@ const SearchbarComponent = () => {
                     <View style={styles.containerContent}>
                         <Text style={styles.modalText}>Filters and sorting</Text>
                         <SearchBar
+                            containerStyle={styles.searchField}
+                            inputContainerStyle={{backgroundColor: '#595959', borderRadius: 13}}
                             placeholder="Search for a song or an artist"
                             onChangeText={(text) => handleSearch(text)}
                             value={searchWord}
                         />
+                        <YearSelect/>
+                        <OrderSelect/>
                     </View>
                 }
                 ContentModalStyle={styles.Modal}
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 2
     },
     containerContent: {
-        height: '100%',
+        height: '70%',
         alignSelf: 'center',
         display: 'flex',
         width: '90%'
@@ -115,6 +119,11 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginTop: 300
     },
+    searchField: { 
+        backgroundColor: 'transparent',
+        borderBottomColor: 'transparent',
+        borderTopColor: 'transparent',
+    }
 })
 
 export default SearchbarComponent;
