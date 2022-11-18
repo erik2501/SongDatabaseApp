@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
 import { AirbnbRating, Button } from "react-native-elements";
-import { CREATE_REVIEW } from "../helpers/queries";
+import { CREATE_REVIEW, GET_REVIEWS } from "../helpers/queries";
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -19,7 +19,7 @@ function ReviewComponent({ songID }: { songID: number }) {
     const [message, setMessage] = useState<string>("");
 
     // this is the mutation that adds a review to the db
-    const [createReview, { loading }] = useMutation(CREATE_REVIEW);
+    const [createReview, { loading }] = useMutation(CREATE_REVIEW, { refetchQueries: [GET_REVIEWS] });
 
     // handles submit-button clicks, by creating a review if the needed variables are filled out, and displaying message if not
     const handleSubmit = () => {
