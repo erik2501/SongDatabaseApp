@@ -52,8 +52,8 @@ const SongTable = ({ navigation }: SongTableProps) => {
     if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
-        <View>
-            <ScrollView>
+        <View style={{ minHeight: '100%'}}> 
+            <ScrollView style={{ }}> 
                 {/* have to add validation for if the list is empty */}
                 {songs.map((song, index) => {
                     return (
