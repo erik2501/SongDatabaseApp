@@ -1,7 +1,5 @@
 import { StyleSheet } from "react-native";
 import { useQuery } from "@apollo/client";
-// import { useRecoilState } from 'recoil';
-// import { yearAtom } from '../shared/globalState';
 import { GET_DISTINCT_YEARS } from "../helpers/queries";
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -91,50 +89,50 @@ const YearSelect = ({year, setYear}: IProps) => {
 export default YearSelect;
 
 const styles = StyleSheet.create({
-    containerStyle: {
-        backgroundColor: '#fff',
-        borderColor: 'black',
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    dropdown: {
-      marginTop: 30,
-      height: 50,
+  containerStyle: {
+      backgroundColor: '#fff',
       borderColor: 'black',
-      borderWidth: 0, // Hva tenker vi her?
+  },
+  container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
       width: '100%',
-      // backgroundColor: '#2F3337',
-      borderRadius: 13,
-      backgroundColor: '#595959',
-      padding: 10
-    },
-    icon: {
-      marginRight: 5,
-      color: '#86939E'
-    },
-    placeholderStyle: {
-      fontSize: 16,
-    },
-    selectedTextStyle: {
-      fontSize: 16,
-      // color: '#86939E',
-      color: 'lightgrey'
-    },
-    itemTextStyle: {
-      fontSize: 16,
-      color: '#86939E'
-    },
-    iconStyle: {
-      width: 20,
-      height: 20,
-    },
-    inputSearchStyle: {
-      height: 40,
-      fontSize: 16,
-    },
-  });
+  },
+  dropdown: {
+    marginTop: 30,
+    height: 50,
+    borderColor: 'black',
+    borderWidth: 0, // Hva tenker vi her?
+    width: '100%',
+    // backgroundColor: '#2F3337',
+    borderRadius: 13,
+    backgroundColor: '#595959',
+    padding: 10
+  },
+  icon: {
+    marginRight: 5,
+    color: '#86939E'
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    // color: '#86939E',
+    color: 'lightgrey'
+  },
+  itemTextStyle: {
+    fontSize: 16,
+    color: '#86939E'
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
+});

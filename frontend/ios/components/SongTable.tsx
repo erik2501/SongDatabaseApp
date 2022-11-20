@@ -1,18 +1,22 @@
-import { useLazyQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { NetworkStatus, useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 import { RootStackParamList, Song } from "../helpers/types";
 import ErrorPage from "../screens/ErrorPage";
 import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
 import { offsetAtom, yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
-import { ScrollView, Text, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
+import { FlashList } from "@shopify/flash-list";
 
 interface SongTableProps {
     navigation: NavigationProp<RootStackParamList, "Home">
 }
 
+interface GetSongsQueryResult {
+    songSearch: Song[];
+}
 
 // definerer debounce funksjonen vår 
 // const debounceFetch = debounce((fetchFunc: () => void) => fetchFunc())
@@ -30,40 +34,53 @@ const SongTable = ({ navigation }: SongTableProps) => {
 
     // this query gets the songs with the users specified filtering
     const [songs, setSongs] = useState<Song[]>([]);
-    const [fetchSongs, { loading, error, data }] = useLazyQuery(GET_SEARCH);
+    const { loading, error, data, fetchMore, refetch, networkStatus } = useQuery<GetSongsQueryResult>(GET_SEARCH, {variables: { skip: 0, amount: pageSize, searchWord: searchWord, year: year, order: order }});
     const noSongs = "No songs were found."
 
     useEffect(() => {
         if (data) {
+            // console.log(data.songSearch.length)
             setSongs(data.songSearch);
         }
     }, [data])
 
-    // when user changes searchword, this debounce function will fetch filtered songs 500 milliseconds after first input change
-    useEffect(() => {
-        fetchSongs({ variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order } })
-    }, [searchWord])
+    const onUpdate = (prev: GetSongsQueryResult, { fetchMoreResult }: {fetchMoreResult: GetSongsQueryResult}): GetSongsQueryResult => {
+        if (!fetchMoreResult) return prev;
+        const localSongs = [
+            ...prev.songSearch,
+            ...fetchMoreResult.songSearch,
+        ];
+        return Object.assign({}, prev, {
+            songSearch: localSongs,
+        });
+    };
 
-    // when the user changes page, order or year the songs are being fetched immediately.
-    useEffect(() => {
-        fetchSongs({ variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order } })
-    }, [offset, order, year])
+    const handleOnEndReached = () => {
+        return fetchMore({
+            variables: {
+                skip: data?.songSearch.length,
+                amount: pageSize,
+            },
+            updateQuery: onUpdate,
+        });
+    };
+
+    const refreshing = networkStatus === NetworkStatus.refetch;
 
     if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
-        <View style={{ minHeight: '100%'}}> 
-            <ScrollView style={{ }}> 
-                {/* have to add validation for if the list is empty */}
-                {songs.map((song, index) => {
-                    return (
-                        <View key={index}>
-                            <SongCard key={index} song={song} navigation={navigation} />
-                        </View>
-                    )
-                })}
-            </ScrollView>
-
+        <View style={{ height: Dimensions.get("screen").height *0.83, width: Dimensions.get("screen").width}}>
+            <FlashList
+                data={songs}
+                renderItem={({item}) => <SongCard song={item} navigation={navigation}/>}
+                keyExtractor={(item, index) => index.toString()}
+                onEndReachedThreshold={0}
+                onEndReached={handleOnEndReached}
+                onRefresh={refetch}
+                refreshing={refreshing}
+                estimatedItemSize={200}
+            />
         </View>
     )
 }

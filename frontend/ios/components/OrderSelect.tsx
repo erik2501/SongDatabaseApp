@@ -1,12 +1,4 @@
-// import { View } from "react-native";
-// import { useState } from "react";
-// import RNPickerSelect from "react-native-picker-select";
 import { StyleSheet } from "react-native";
-// import { useQuery } from "@apollo/client";
-// import { useRecoilState } from 'recoil';
-// import { orderAtom } from '../shared/globalState';
-// import { GET_DISTINCT_YEARS } from "../helpers/queries";
-// import { Text } from "react-native-elements";
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
