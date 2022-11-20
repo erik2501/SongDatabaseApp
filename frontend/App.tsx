@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import HomeScreen from './ios/screens/HomeScreen';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SongTable from './ios/components/SongTable';
 import SongScreen from './ios/screens/SongScreen';
 import { RootStackParamList } from './ios/helpers/types';
 

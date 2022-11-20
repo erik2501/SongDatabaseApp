@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
 import { Entypo, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SongAllData } from "../helpers/types";
-import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_SONG_BY_SONGID } from "../helpers/queries";
 

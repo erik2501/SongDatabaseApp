@@ -1,11 +1,10 @@
-import { useQuery, gql } from "@apollo/client";
-import { Text, View } from "react-native";
-import { GET_SEARCH } from '../helpers/queries';
+import React from 'react';
+import { View, SafeAreaView } from "react-native";
 import SongTable from '../components/SongTable';
 import { NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../helpers/types";
 import SearchbarComponent from "../components/Searchbar";
-import YearSelect from "../components/YearSelect";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "Home">
@@ -13,19 +12,12 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
 
-  const offset = 0
-  const pageSize = 4
-  const searchWord = ''
-  const year = 0
-  const order = -1
-
-  const { data } = useQuery(GET_SEARCH, { variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order } });
-
-
   return (
-    <View>
-      <SearchbarComponent/>
-      <SongTable navigation={navigation} />
-    </View>
+    <SafeAreaView>
+      <BottomSheetModalProvider>
+        <SearchbarComponent/>
+        <SongTable navigation={navigation} />
+      </BottomSheetModalProvider>
+    </SafeAreaView>
   );
 }

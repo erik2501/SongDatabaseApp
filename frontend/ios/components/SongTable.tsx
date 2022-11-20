@@ -1,4 +1,4 @@
-import { NetworkStatus, useLazyQuery, useQuery } from "@apollo/client";
+import { NetworkStatus, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { RootStackParamList, Song } from "../helpers/types";
 import ErrorPage from "../screens/ErrorPage";
@@ -6,9 +6,8 @@ import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
 import { offsetAtom, yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
-import { Dimensions, FlatListProps, ListRenderItem, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FlashList } from "@shopify/flash-list";
 
 interface SongTableProps {

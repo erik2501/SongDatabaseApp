@@ -1,19 +1,16 @@
-import { View } from "react-native";
-import { useState } from "react";
-import RNPickerSelect from "react-native-picker-select";
 import { StyleSheet } from "react-native";
-import { useQuery } from "@apollo/client";
-import { useRecoilState } from 'recoil';
-import { orderAtom } from '../shared/globalState';
-import { GET_DISTINCT_YEARS } from "../helpers/queries";
-import { Text } from "react-native-elements";
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
-const OrderSelect = () => {
+interface IProps {
+  order: number,
+  setOrder: React.Dispatch<React.SetStateAction<number>>
+}
 
-    const [order, setOrder] = useRecoilState(orderAtom);
+const OrderSelect = ({order, setOrder}: IProps) => {
+
+    // const [order, setOrder] = useRecoilState(orderAtom);
 
     //må se på offset men kommer an på hvordan paginering løses
 
@@ -22,28 +19,25 @@ const OrderSelect = () => {
         { label: 'Oldest first', value: 0 },
     ]
     return (
-        <View >
-            <Dropdown
-                value={order}
-                style={styles.dropdown}
-                maxHeight={300}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                containerStyle={styles.containerStyle}
-                itemTextStyle={styles.selectedTextStyle}
-                itemContainerStyle={styles.containerStyle}
-                iconStyle={styles.iconStyle}
-                data={items}
-                placeholder="Select item"
-                labelField={'label'}
-                valueField={'value'}
-                onChange={(item)  => setOrder(parseInt(item.value))}
-                renderLeftIcon={() => (
-                    <AntDesign style={styles.icon} color="black" name="swap" size={20} />
-                )}
-            />
-        </View>
-
+        <Dropdown
+            value={order}
+            style={styles.dropdown}
+            maxHeight={300}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            containerStyle={styles.containerStyle}
+            itemTextStyle={styles.itemTextStyle}
+            itemContainerStyle={styles.containerStyle}
+            iconStyle={styles.iconStyle}
+            data={items}
+            placeholder="Select item"
+            labelField={'label'}
+            valueField={'value'}
+            onChange={(item)  => setOrder(parseInt(item.value))}
+            renderLeftIcon={() => (
+                <AntDesign style={styles.icon} color="black" name="swap" size={20} />
+            )}
+        />
       );
     };
 
@@ -58,10 +52,12 @@ dropdown: {
   marginTop: 30,
   height: 50,
   borderColor: 'black',
-  borderWidth: 1,
+  borderWidth: 0, // Hva tenker vi her?
   width: '100%',
-  backgroundColor: '#2F3337',
-  borderRadius: 5
+  // backgroundColor: '#2F3337',
+  borderRadius: 13,
+  backgroundColor: '#595959',
+  padding: 10
 },
 icon: {
   marginRight: 5,
@@ -74,8 +70,13 @@ placeholderStyle: {
 },
 selectedTextStyle: {
   fontSize: 16,
-  color: '#86939E',
+  color: 'lightgrey'
+  // color: '#86939E',
   //backgroundColor: '#2F3337'
+},
+itemTextStyle: {
+  fontSize: 16,
+  color: '#86939E'
 },
 iconStyle: {
   width: 20,

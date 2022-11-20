@@ -1,8 +1,6 @@
-import { ScrollView, View } from "react-native"
-import { Button, Text } from "react-native-elements"
+import { ScrollView, View } from "react-native";
 import SongDetails from "../components/SongDetails";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
 import { RootStackParamList } from "../helpers/types";
 import { NavigationProp, RouteProp } from "@react-navigation/native";
 import ReviewComponent from "../components/ReviewComponent";
