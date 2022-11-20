@@ -10,8 +10,6 @@ const windowHeight = Dimensions.get('window').height;
 
 function ReviewComponent({ songID }: { songID: number }) {
 
-
-
     // these are the variables for each field for the review, and the message is an error message
     const [star, setStar] = useState<number | null>()
     const [userName, setUserName] = useState<string>()
@@ -23,14 +21,14 @@ function ReviewComponent({ songID }: { songID: number }) {
 
     // handles submit-button clicks, by creating a review if the needed variables are filled out, and displaying message if not
     const handleSubmit = () => {
-        console.log('det er handle submit som blir logga' + userName, star)
         if (userName && star) {
-            setMessage("")
+            setMessage("");
             createReview({ variables: { userName: userName, star: star, description: description, songID: songID } });
-            setUserName(undefined)
-            setStar(undefined)
+            setUserName(undefined);
+            setStar(undefined);
+            setDescription(undefined);
         } else {
-            setMessage('Fill inn name and stars')
+            setMessage('Fill inn name and stars');
         }
     }
 
@@ -56,6 +54,7 @@ function ReviewComponent({ songID }: { songID: number }) {
                 style={styles.inputRev}
                 onChangeText={setDescription}
                 value={description}
+                multiline={true}
             />
             <Button onPress={() => handleSubmit()}
                 title='Submit Review'
@@ -103,7 +102,10 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10,
         backgroundColor: '#fff',
-        borderRadius: 6
+        borderRadius: 6,
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
     },
     errorMsg: {
         color: 'black'
