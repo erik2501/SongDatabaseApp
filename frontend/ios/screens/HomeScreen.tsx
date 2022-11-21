@@ -1,9 +1,15 @@
-import { useQuery, gql } from "@apollo/client";
-import { Text, View } from "react-native";
-import { GET_SEARCH } from '../helpers/queries';
+import React from 'react';
+import { View, SafeAreaView } from "react-native";
 import SongTable from '../components/SongTable';
 import { NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../helpers/types";
+import SearchbarComponent from "../components/Searchbar";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { Dimensions } from 'react-native';
+import { useSetRecoilState } from 'recoil';
+import { orientationAtom } from '../shared/globalState';
+
+
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "Home">
@@ -11,18 +17,23 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
 
-  const offset = 0
-  const pageSize = 4
-  const searchWord = ''
-  const year = 0
-  const order = -1
+  const isPortrait = () => {
+    const dim = Dimensions.get('screen');
+    return dim.height >= dim.width;
+  };
 
-  const { data } = useQuery(GET_SEARCH, { variables: { skip: offset, amount: pageSize, searchWord: searchWord, year: year, order: order } });
+  const setOrientation = useSetRecoilState(orientationAtom);
 
+  Dimensions.addEventListener('change', () => {
+      setOrientation(isPortrait());
+  });
 
   return (
-    <View>
-      <SongTable navigation={navigation} />
-    </View>
+    <SafeAreaView style={{backgroundColor: '#222831'}}>
+      <BottomSheetModalProvider>
+        <SearchbarComponent/>
+        <SongTable navigation={navigation} />
+      </BottomSheetModalProvider>
+    </SafeAreaView>
   );
 }

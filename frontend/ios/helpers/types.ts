@@ -23,3 +23,9 @@ export type SongAllData = {
     energy: number,
     imageURL: string
 }
+
+export interface reviewProp {
+    userName: string,
+    star: number,
+    description: string,
+}

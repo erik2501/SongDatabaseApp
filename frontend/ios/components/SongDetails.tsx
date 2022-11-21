@@ -1,17 +1,10 @@
-import React from "react";
-import { View, Text, StyleSheet, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Entypo, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SongAllData } from "../helpers/types";
-import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_SONG_BY_SONGID } from "../helpers/queries";
 
-type Style = {
-    container: ViewStyle;
-    container2: ViewStyle;
-    title: TextStyle;
-    logo: ImageStyle;
-};
 
 //songDetails med hardkodet info
 const SongDetails = ({ songID }: { songID: number }) => {
@@ -26,7 +19,7 @@ const SongDetails = ({ songID }: { songID: number }) => {
             clock : minutes + ":" + seconds
         };
     }
-    console.log(songID)
+    // console.log(songID)
     
     const [song, setSong] = useState<SongAllData>();
     const { loading, error, data } = useQuery(GET_SONG_BY_SONGID, { variables: { songID: songID } });
@@ -81,18 +74,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        backgroundColor: '#121212',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        padding: 10
     },
     container2: {
+        marginTop: 10,
         flexDirection: 'row',
         alignItems: 'center'
     },
     title: {
-        color : 'white',
+        color : 'lightgrey',
         textAlign: 'center',
-
+        fontSize: 20
     },
     logo: {
         width: 300,
