@@ -6,11 +6,6 @@ export const searchWordAtom = atom({
     default: ''
 });
 
-export const offsetAtom = atom({
-    key: 'offset-atom',
-    default: 0
-})
-
 export const pageSizeAtom = atom({
     key: 'pageSize-atom',
     default: 10
@@ -26,6 +21,7 @@ export const orderAtom = atom({
     default: -1
 })
 
+// Function that returns true if the screen is in portrait mode, and false if in landscape mode
 const isPortrait = () => {
     const dim = Dimensions.get('screen');
     return dim.height >= dim.width;

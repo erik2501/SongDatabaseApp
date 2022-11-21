@@ -4,7 +4,7 @@ import { GET_REVIEWS } from '../helpers/queries';
 import { Text, View } from 'react-native';
 
 // this is a component that fetches the 10 last reviews from the db and displays them with info 
-export default function ListReviews({ songID }: { songID: number }) {
+const ListReviews = ({ songID }: { songID: number }) => {
 
     // this query gets the last 10 reviews of a specific song
     const { loading, error, data } = useQuery(GET_REVIEWS, { variables: { songID: songID, amount: 10 } });
@@ -20,6 +20,7 @@ export default function ListReviews({ songID }: { songID: number }) {
                 ))
             }
         </View>
-
     )
 }
+
+export default ListReviews

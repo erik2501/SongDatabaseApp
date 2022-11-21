@@ -34,7 +34,6 @@ export default function App() {
                 headerTitleStyle: styles.headerText
               }}
               initialParams={{ songID: 0 }}
-
             />
           </Stack.Navigator>
         </ApolloProvider>

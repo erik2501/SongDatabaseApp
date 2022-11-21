@@ -4,9 +4,9 @@ import { RootStackParamList, Song } from "../helpers/types";
 import ErrorPage from "../screens/ErrorPage";
 import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
-import { offsetAtom, yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
+import { yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 
@@ -18,28 +18,22 @@ interface GetSongsQueryResult {
     songSearch: Song[];
 }
 
-// definerer debounce funksjonen vår 
-// const debounceFetch = debounce((fetchFunc: () => void) => fetchFunc())
-
 // This component displays the songs on the homepage. 
 const SongTable = ({ navigation }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
     const searchWord = useRecoilValue(searchWordAtom);
-    const offset = useRecoilValue(offsetAtom);
     const year = useRecoilValue(yearAtom);
     const order = useRecoilValue(orderAtom);
     const pageSize = useRecoilValue(pageSizeAtom);
 
     // this query gets the songs with the users specified filtering
     const [songs, setSongs] = useState<Song[]>([]);
-    const { loading, error, data, fetchMore, refetch, networkStatus } = useQuery<GetSongsQueryResult>(GET_SEARCH, {variables: { skip: 0, amount: pageSize, searchWord: searchWord, year: year, order: order }});
-    const noSongs = "No songs were found."
+    const { error, data, fetchMore, refetch, networkStatus } = useQuery<GetSongsQueryResult>(GET_SEARCH, {variables: { skip: 0, amount: pageSize, searchWord: searchWord, year: year, order: order }});
 
     useEffect(() => {
         if (data) {
-            // console.log(data.songSearch.length)
             setSongs(data.songSearch);
         }
     }, [data])

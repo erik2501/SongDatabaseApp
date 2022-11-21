@@ -17,21 +17,23 @@ const SearchbarComponent = () => {
     const [year, setYear] = useRecoilState(yearAtom);
     const [order, setOrder] = useRecoilState(orderAtom);
 
-
+    // Using local variables to in modal, then update the recoil global variables when the "use filters" button is clicked
     const [searchWordLocal, setSearchWordLocal] = useState<string>(searchWord);
     const [yearLocal, setYearLocal] = useState<number>(year);
     const [orderLocal, setOrderLocal] = useState<number>(order);
-
-
+    
+    // Vaiable to know what orientation the phone is in.
     const orientation = useRecoilValue(orientationAtom);
 
+    // useRef hook for the bottomsheetmodal used to make modal responsive
+    const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+    // The two optional sizes of the modal
+    const snapPoints = useMemo(() => ['65%', '95%'], []);
 
     const handleSearch = (value: string) => {
         setSearchWordLocal(value);
     }
-
-    const bottomSheetRef = useRef<BottomSheetModal>(null);
-    const snapPoints = useMemo(() => ['65%', '95%'], []);
 
     const handleSheetChanges = useCallback((index: number) => {
         bottomSheetRef.current?.snapToIndex(index);
@@ -56,7 +58,6 @@ const SearchbarComponent = () => {
         setYear(0);
         setYearLocal(0);
     }
-
 
     return (
         <View style={styles.filterbar}>
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     },
     // For the modal
     modal: {
-        backgroundColor: '#343242',//'#343242' // '#475a73'
+        backgroundColor: '#343242'
     },
     contentContainer: {
         height: 230,
