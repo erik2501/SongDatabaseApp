@@ -13,7 +13,7 @@ export default function ListReviews({ songID }: { songID: number }) {
     if (error) return <Text>`Error! ${error.message}`</Text>;
 
     return (
-        <View style={{marginBottom: 300}}>
+        <View style={{marginBottom: 300, width: '80%', alignSelf: 'center'}}>
             {
                 data.reviewsBySongID?.map((review: { userName: string; star: number; description: string; }, index: number) => (
                     <ReviewCard userName={review.userName} star={review.star} description={review.description} key={index} />

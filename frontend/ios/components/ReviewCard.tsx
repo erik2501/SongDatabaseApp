@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 6,
         elevation: 3,
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#343b45',
         shadowOffset: { width: 1, height: 1 },
         shadowColor: '#333',
         shadowOpacity: 0.3,
@@ -39,9 +39,11 @@ const styles = StyleSheet.create({
     },
     textName: {
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'lightgrey'
     },
     text: {
-        fontSize: 20
+        fontSize: 20,
+        color: 'lightgrey'
     }
 })

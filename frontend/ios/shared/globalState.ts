@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { Dimensions } from 'react-native';
 
 export const searchWordAtom = atom({
     key: 'searchWord-atom',
@@ -23,4 +24,14 @@ export const yearAtom = atom({
 export const orderAtom = atom({
     key: 'order-atom',
     default: -1
+})
+
+const isPortrait = () => {
+    const dim = Dimensions.get('screen');
+    return dim.height >= dim.width;
+};
+
+export const orientationAtom = atom({
+    key: 'orientation-atom',
+    default: isPortrait()
 })

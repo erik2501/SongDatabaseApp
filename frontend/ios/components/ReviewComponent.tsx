@@ -55,6 +55,7 @@ function ReviewComponent({ songID }: { songID: number }) {
                 onChangeText={setDescription}
                 value={description}
                 multiline={true}
+                
             />
             <Button onPress={() => handleSubmit()}
                 title='Submit Review'
@@ -68,44 +69,41 @@ function ReviewComponent({ songID }: { songID: number }) {
 }
 
 const styles = StyleSheet.create({
-    titleText: {
-        marginVertical: 7,
-        fontSize: 20,
-        fontWeight: "bold",
-        color: 'black'
-    },
-    subtitleText: {
-        marginVertical: 7,
-        fontSize: 15,
-        color: 'black'
-    },
     reviewContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
     },
+    titleText: {
+        marginVertical: 7,
+        fontSize: 20,
+        fontWeight: "bold",
+        color: 'lightgrey'
+    },
+    subtitleText: {
+        marginVertical: 7,
+        fontSize: 15,
+        color: 'lightgrey'
+    },
     inputName: {
-        height: windowHeight * 0.07,
-        width: windowWidth * 0.8,
-        borderWidth: 4,
-        borderColor: '#b0b3b8',
+        height: 50,
+        width: '70%',
+        backgroundColor: '#595959', 
+        borderRadius: 13,
         padding: 10,
         margin: 10,
-        backgroundColor: '#fff',
-        borderRadius: 6
+        color: 'lightgrey',
+        fontSize: 17
     },
     inputRev: {
-        height: windowHeight * 0.2,
-        width: windowWidth * 0.8,
-        borderWidth: 4,
-        borderColor: '#b0b3b8',
+        height: 170,
+        width: '70%',
+        backgroundColor: '#595959', 
+        borderRadius: 13,
         padding: 10,
         margin: 10,
-        backgroundColor: '#fff',
-        borderRadius: 6,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        color: 'lightgrey',
+        fontSize: 17
     },
     errorMsg: {
         color: 'black'

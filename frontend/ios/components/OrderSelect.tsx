@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useRecoilValue } from 'recoil';
+import { orientationAtom } from '../shared/globalState';
 
 
 interface IProps {
@@ -10,51 +12,47 @@ interface IProps {
 
 const OrderSelect = ({order, setOrder}: IProps) => {
 
-    // const [order, setOrder] = useRecoilState(orderAtom);
+  // const orientation = useRecoilValue(orientationAtom);
 
-    //må se på offset men kommer an på hvordan paginering løses
-
-    const items = [
-        { label: 'Newest first', value: -1 },
-        { label: 'Oldest first', value: 0 },
-    ]
-    return (
-        <Dropdown
-            value={order}
-            style={styles.dropdown}
-            maxHeight={300}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            containerStyle={styles.containerStyle}
-            itemTextStyle={styles.itemTextStyle}
-            itemContainerStyle={styles.containerStyle}
-            iconStyle={styles.iconStyle}
-            data={items}
-            placeholder="Select item"
-            labelField={'label'}
-            valueField={'value'}
-            onChange={(item)  => setOrder(parseInt(item.value))}
-            renderLeftIcon={() => (
-                <AntDesign style={styles.icon} color="black" name="swap" size={20} />
-            )}
-        />
-      );
-    };
+  const items = [
+      { label: 'Newest first', value: -1 },
+      { label: 'Oldest first', value: 0 },
+  ]
+  return (
+    <Dropdown
+        value={order}
+        style={styles.dropdown}
+        maxHeight={300}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        containerStyle={styles.containerStyle}
+        itemTextStyle={styles.itemTextStyle}
+        itemContainerStyle={styles.containerStyle}
+        iconStyle={styles.iconStyle}
+        data={items}
+        placeholder="Select item"
+        labelField={'label'}
+        valueField={'value'}
+        onChange={(item)  => setOrder(parseInt(item.value))}
+        renderLeftIcon={() => (
+            <AntDesign style={styles.icon} color="black" name="swap" size={20} />
+        )}
+    />
+  );
+};
 
 export default OrderSelect;
 
 const styles = StyleSheet.create({
 containerStyle: {
-    backgroundColor: 'white',
-    borderColor: 'white'
+  backgroundColor: 'white',
+  borderColor: 'white'
 },
 dropdown: {
-  marginTop: 30,
   height: 50,
   borderColor: 'black',
-  borderWidth: 0, // Hva tenker vi her?
+  borderWidth: 0,
   width: '100%',
-  // backgroundColor: '#2F3337',
   borderRadius: 13,
   backgroundColor: '#595959',
   padding: 10

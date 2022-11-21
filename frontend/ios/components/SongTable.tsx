@@ -70,7 +70,7 @@ const SongTable = ({ navigation }: SongTableProps) => {
     if (error) return <ErrorPage message={`Error! ${error.message}`} />;
 
     return (
-        <View style={{ height: Dimensions.get("screen").height *0.83, width: Dimensions.get("screen").width}}>
+        <View style={{ height: '100%', width: '100%', alignSelf: 'center' }}>
             <FlashList
                 data={songs}
                 renderItem={({item}) => <SongCard song={item} navigation={navigation}/>}

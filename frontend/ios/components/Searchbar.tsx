@@ -7,6 +7,8 @@ import { SearchBar, Button } from '@rneui/base';
 import YearSelect from "../components/YearSelect";
 import OrderSelect from './OrderSelect';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useRecoilValue } from 'recoil';
+import { orientationAtom } from '../shared/globalState';
 
 
 const SearchbarComponent = () => {
@@ -21,12 +23,15 @@ const SearchbarComponent = () => {
     const [orderLocal, setOrderLocal] = useState<number>(order);
 
 
+    const orientation = useRecoilValue(orientationAtom);
+
+
     const handleSearch = (value: string) => {
         setSearchWordLocal(value);
     }
 
     const bottomSheetRef = useRef<BottomSheetModal>(null);
-    const snapPoints = useMemo(() => ['65%', '90%'], []);
+    const snapPoints = useMemo(() => ['65%', '95%'], []);
 
     const handleSheetChanges = useCallback((index: number) => {
         bottomSheetRef.current?.snapToIndex(index);
@@ -88,27 +93,37 @@ const SearchbarComponent = () => {
                 snapPoints={snapPoints}
                 backgroundStyle={styles.modal}
                 enablePanDownToClose={true}
-                index={0}
+                index={ orientation ? 0 : 1}
                 onChange={handleSheetChanges}
             >
-                <View style={styles.contentContainer}>
-                    <Text style={styles.modalText}>Filters and sorting</Text>
-                    <SearchBar
-                        containerStyle={styles.searchField}
-                        inputContainerStyle={{backgroundColor: '#595959', borderRadius: 13}}
-                        inputStyle={{ color: 'lightgrey'}}
-                        labelStyle={{color:'lightgrey'}}
-                        // placeholderTextColor='lightgrey'
-                        placeholder="Search for a song or an artist"
-                        onChangeText={(text) => handleSearch(text)}
-                        value={searchWordLocal}
-                    />
-                    <YearSelect year={yearLocal} setYear={setYearLocal}/>
-                    <OrderSelect order={orderLocal} setOrder={setOrderLocal}/>
-                    <Button style={{ marginTop: 30 }} onPress={submitFilters}>
+                <Text style={styles.modalText}>Filters and sorting</Text>
+                <View style={[{ display: 'flex'}, orientation ? { flexDirection: 'column' } : { flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }]}>
+                    <View style={orientation ? styles.contentContainer : styles.contentLandscape}>
+                        <SearchBar
+                            containerStyle={styles.searchField}
+                            inputContainerStyle={{ backgroundColor: '#595959', borderRadius: 13 }}
+                            inputStyle={{ color: 'lightgrey'}}
+                            labelStyle={{ color:'lightgrey' }}
+                            placeholder="Search for a song or an artist"
+                            onChangeText={(text) => handleSearch(text)}
+                            value={searchWordLocal}
+                        />
+                        <YearSelect year={yearLocal} setYear={setYearLocal}/>
+                        <OrderSelect order={orderLocal} setOrder={setOrderLocal}/>
+                    </View>
+                    <Button 
+                        buttonStyle={{
+                            backgroundColor: '#89b9cc',
+                            borderRadius: 3,
+                            width: 120,
+                            alignSelf:'center',
+                        }}
+                        onPress={submitFilters}
+                    >
                         Use filters
                     </Button>
                 </View>
+                
             </BottomSheetModal>
         </View>
     )
@@ -122,7 +137,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 8
+        padding: 8,
+        borderTopWidth: 0.2,
+        borderTopColor: '#525c69',
+        borderBottomWidth: 0.2,
+        borderBottomColor: '#525c69'
     },
     filterbutton: {
         height: 40,
@@ -144,7 +163,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginLeft: 8,
         backgroundColor: '#0060ba',
-        color: 'grey',
+        color: 'lightgrey',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -157,14 +176,23 @@ const styles = StyleSheet.create({
     },
     // For the modal
     modal: {
-        backgroundColor: '#222831'//'#343242'
+        backgroundColor: '#343242',//'#343242' // '#475a73'
     },
     contentContainer: {
-        flex: 1,
-        paddingTop: 10,
-        alignItems: 'center',
+        height: 230,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
         width: '85%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+    },
+    contentLandscape: {
+        height: 230,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        width: '50%',
+        marginLeft: 60
     },
     modalText: {
         color: '#d2d2d6',
@@ -173,10 +201,10 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     searchField: { 
+        height: 50,
         backgroundColor: 'transparent',
         borderBottomColor: 'transparent',
         borderTopColor: 'transparent',
-        width: '100%',
         padding: 0,
         color: 'lightgrey'
     },

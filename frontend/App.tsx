@@ -7,7 +7,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SongScreen from './ios/screens/SongScreen';
 import { RootStackParamList } from './ios/helpers/types';
 
-
 export default function App() {
 
   const client = new ApolloClient({
@@ -21,26 +20,18 @@ export default function App() {
     <NavigationContainer>
       <RecoilRoot>
         <ApolloProvider client={client}>
-          <Stack.Navigator initialRouteName='Home'>
+          <Stack.Navigator initialRouteName='Home' screenOptions={() => ({headerStyle: {backgroundColor: 'red'}})}>
             <Stack.Screen name='Home' component={HomeScreen}
               options={{
                 title: 'IMDB - International Music DataBase',
-                headerStyle: {
-                  backgroundColor: '#c2eeff',
-                },
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
+                headerStyle: styles.header,
+                headerTitleStyle: styles.headerText
               }} />
             <Stack.Screen name='SongScreen' component={SongScreen}
               options={{
-                title: 'IMDB - International Music DataBase',
-                headerStyle: {
-                  backgroundColor: '#c2eeff',
-                },
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
+                title: 'IMDB',
+                headerStyle: styles.header,
+                headerTitleStyle: styles.headerText
               }}
               initialParams={{ songID: 0 }}
 
@@ -53,9 +44,15 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-
+  header: {
+    backgroundColor: '#222831',
+    borderWidth: 0,
+    borderBottomWidth: 0,
+    shadowColor: 'transparent',
+    elevation: 0,
   },
+  headerText: {
+    fontWeight: 'bold',
+    color: 'lightgrey'
+  }
 });

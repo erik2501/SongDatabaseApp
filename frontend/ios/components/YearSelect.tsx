@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/client";
 import { GET_DISTINCT_YEARS } from "../helpers/queries";
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useRecoilValue } from 'recoil';
+import { orientationAtom } from '../shared/globalState';
 
 interface IProps {
   year: number,
@@ -11,9 +13,9 @@ interface IProps {
 
 const YearSelect = ({year, setYear}: IProps) => {
 
-    // const [year, setYear] = useRecoilState(yearAtom);
+  // const orientation = useRecoilValue(orientationAtom);
 
-    const {data} = useQuery(GET_DISTINCT_YEARS);
+  const {data} = useQuery(GET_DISTINCT_YEARS);
     
  /*
     //console.log(data.getDistinctYears)
@@ -101,12 +103,9 @@ const styles = StyleSheet.create({
       width: '100%',
   },
   dropdown: {
-    marginTop: 30,
     height: 50,
     borderColor: 'black',
-    borderWidth: 0, // Hva tenker vi her?
-    width: '100%',
-    // backgroundColor: '#2F3337',
+    borderWidth: 0,
     borderRadius: 13,
     backgroundColor: '#595959',
     padding: 10
@@ -120,7 +119,6 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    // color: '#86939E',
     color: 'lightgrey'
   },
   itemTextStyle: {
