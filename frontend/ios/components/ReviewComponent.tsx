@@ -62,7 +62,9 @@ function ReviewComponent({ songID }: { songID: number }) {
                 buttonStyle={{
                     backgroundColor: '#89b9cc',
                     borderRadius: 3,
-                }} />
+                }} 
+                titleStyle={{color: '#222831'}}
+            />
             <Text style={styles.errorMsg}>{message}</Text>
         </View>
     )

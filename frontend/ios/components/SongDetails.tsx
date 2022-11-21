@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Entypo, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SongAllData } from "../helpers/types";
 import { useQuery } from "@apollo/client";
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     },
     title: {
         color : 'lightgrey',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 20
     },
     logo: {
         width: 300,

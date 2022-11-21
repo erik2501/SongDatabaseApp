@@ -64,7 +64,8 @@ function SongCard({ song, navigation }: SongCardProps) {
                         borderRadius: 3,
                         width: 120,
                         marginTop: 10
-                    }} 
+                    }}
+                    titleStyle={{color: '#222831'}}
                 />
             </View>
         </View>
@@ -101,11 +102,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     baseText: {
-        marginVertical: 6,
-        color: 'lightgrey'
+        marginBottom: 6,
+        color: 'lightgrey',
+        fontSize: 18
     },
     titleText: {
-        marginVertical: 7,
+        marginVertical: 6,
         fontSize: 20,
         fontWeight: "bold",
         color: 'lightgrey'

@@ -63,15 +63,16 @@ const SearchbarComponent = () => {
             <Button
                 onPress={handlePresentModalPress}
                 buttonStyle={styles.filterbutton}
+                titleStyle={styles.filterbarText}
             >
-                <Text style={styles.filterbarText}>Filters</Text>
+                Filters
             </Button>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {year !== 0 ? 
                 <View style={styles.filterbox}>
                     <Text style={styles.filterbarText}>Year: {year}</Text>
-                    <TouchableOpacity onPress={clearYearFilter}>
+                    <TouchableOpacity onPress={clearYearFilter} style={{marginLeft: 6}}>
                         <Icon name={'closecircle'} color={'grey'} size={20} />
                     </TouchableOpacity>
                 </View> 
@@ -81,7 +82,7 @@ const SearchbarComponent = () => {
                 { searchWord !== '' ?
                 <View style={styles.filterbox}>
                     <Text style={styles.filterbarText}>Search: {searchWord}</Text>
-                    <TouchableOpacity onPress={clearSearch}>
+                    <TouchableOpacity onPress={clearSearch} style={{marginLeft: 6}}>
                         <Icon name={'closecircle'} color={'grey'} size={20} />
                     </TouchableOpacity>
                 </View>
@@ -118,12 +119,12 @@ const SearchbarComponent = () => {
                             width: 120,
                             alignSelf:'center',
                         }}
+                        titleStyle={{color: '#222831'}}
                         onPress={submitFilters}
                     >
                         Use filters
                     </Button>
                 </View>
-                
             </BottomSheetModal>
         </View>
     )
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: '#5a5963',
         borderStyle: 'solid',
-        color: 'lightgrey'
+        marginRight: 6
     },
     filterbox: {
         height: 40,
@@ -171,8 +172,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     filterbarText: {
-        color: 'lightgrey',
-        marginRight: 5
+        fontSize: 18,
+        color: 'lightgrey'
     },
     // For the modal
     modal: {
