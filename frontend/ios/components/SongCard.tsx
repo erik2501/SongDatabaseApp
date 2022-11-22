@@ -15,15 +15,16 @@ const windowHeight = Dimensions.get('window').height;
 
 const cardWidth = windowWidth * 0.9;
 const cardHeight = windowHeight * 0.2;
-
+//This is the interface definition for a prop for the songCard
 interface SongCardProps {
     song: Song,
     navigation: NavigationProp<RootStackParamList, "Home">
 }
 
-
+//This card displays the homepage info of each card
 function SongCard({ song, navigation }: SongCardProps) {
 
+    //This query gets and calculates the average score for each song
     const { data } = useQuery(GET_AVG_REVIEW_SCORE, { variables: { songID: song.songID } })
     const [colSwitch, setColSwitch] = useState<boolean>(true);
 

@@ -7,7 +7,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const cardWidth = windowWidth * 0.9;
 
-
+//This component displays each review of a song
 export default function ReviewCard(props: reviewProp) {
     return (
         <View style={styles.container}>

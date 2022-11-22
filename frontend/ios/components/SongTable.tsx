@@ -11,7 +11,8 @@ import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 
 interface SongTableProps {
-    navigation: NavigationProp<RootStackParamList, "Home">
+    navigationHome: NavigationProp<RootStackParamList, "Home">;
+    navigationError: NavigationProp<RootStackParamList, "ErrorPage">;
 }
 
 interface GetSongsQueryResult {
@@ -22,7 +23,7 @@ interface GetSongsQueryResult {
 // const debounceFetch = debounce((fetchFunc: () => void) => fetchFunc())
 
 // This component displays the songs on the homepage. 
-const SongTable = ({ navigation }: SongTableProps) => {
+const SongTable = ({ navigationHome, navigationError }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
@@ -34,17 +35,16 @@ const SongTable = ({ navigation }: SongTableProps) => {
 
     // this query gets the songs with the users specified filtering
     const [songs, setSongs] = useState<Song[]>([]);
-    const { loading, error, data, fetchMore, refetch, networkStatus } = useQuery<GetSongsQueryResult>(GET_SEARCH, {variables: { skip: 0, amount: pageSize, searchWord: searchWord, year: year, order: order }});
+    const { loading, error, data, fetchMore, refetch, networkStatus } = useQuery<GetSongsQueryResult>(GET_SEARCH, { variables: { skip: 0, amount: pageSize, searchWord: searchWord, year: year, order: order } });
     const noSongs = "No songs were found."
 
     useEffect(() => {
         if (data) {
-            // console.log(data.songSearch.length)
             setSongs(data.songSearch);
         }
     }, [data])
 
-    const onUpdate = (prev: GetSongsQueryResult, { fetchMoreResult }: {fetchMoreResult: GetSongsQueryResult}): GetSongsQueryResult => {
+    const onUpdate = (prev: GetSongsQueryResult, { fetchMoreResult }: { fetchMoreResult: GetSongsQueryResult }): GetSongsQueryResult => {
         if (!fetchMoreResult) return prev;
         const localSongs = [
             ...prev.songSearch,
@@ -67,13 +67,13 @@ const SongTable = ({ navigation }: SongTableProps) => {
 
     const refreshing = networkStatus === NetworkStatus.refetch;
 
-    if (error) return <ErrorPage message={`Error! ${error.message}`} />;
+    if (error) return <ErrorPage message={`Error! ${error.message}`} navigation={navigationError} />;
 
     return (
         <View style={{ height: '100%', width: '100%', alignSelf: 'center' }}>
             <FlashList
                 data={songs}
-                renderItem={({item}) => <SongCard song={item} navigation={navigation}/>}
+                renderItem={({ item }) => <SongCard song={item} navigation={navigationHome} />}
                 keyExtractor={(item, index) => index.toString()}
                 onEndReachedThreshold={0}
                 onEndReached={handleOnEndReached}
