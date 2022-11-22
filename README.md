@@ -17,7 +17,7 @@ npm start
 ```
 OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring.
 
-<img src="/frontend/assets/Screenshot 2022-11-22 at 13.29.03.png" alt="drawing" width="200"/>
+<img src="/frontend/assets/Screenshot 2022-11-22 at 13.29.03.png" alt="drawing" width="400"/>
 
 For å ta i bruk applikasjonen finnes det to ulike metoder som du kan velge mellom:
 
