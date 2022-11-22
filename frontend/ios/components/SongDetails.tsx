@@ -5,11 +5,9 @@ import { SongAllData } from "../helpers/types";
 import { useQuery } from "@apollo/client";
 import { GET_SONG_BY_SONGID } from "../helpers/queries";
 
-
-//songDetails med hardkodet info
+//This component displays all the information about a specific song
 const SongDetails = ({ songID }: { songID: number }) => {
 
-    //const songID = 0;
 
     //helpfunction from millisecond to minutes
     const msecToMin = (msec : number) => {
@@ -19,7 +17,6 @@ const SongDetails = ({ songID }: { songID: number }) => {
             clock : minutes + ":" + seconds
         };
     }
-    // console.log(songID)
     
     const [song, setSong] = useState<SongAllData>();
     const { loading, error, data } = useQuery(GET_SONG_BY_SONGID, { variables: { songID: songID } });

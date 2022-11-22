@@ -1,18 +1,36 @@
+import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 import { View, Text } from "react-native";
+import { RootStackParamList } from "../helpers/types";
+import { Button } from "react-native-elements";
 
-// if the user changes the url to a url that is wrong, this page is displayed.
-const ErrorPage = ({ message }: { message: string }) => {
 
-    // const nav = useNavigate();
+interface ErrorPageProps {
+    message: string,
+    navigation: NavigationProp<RootStackParamList, "ErrorPage">
+}
 
-    // const backToHome = () => {
-    //     nav('/')
-    //     window.location.reload()
-    // }
+const ErrorPage = ({ message, navigation }: ErrorPageProps) => {
+
+    const [colSwitch, setColSwitch] = useState<boolean>(true);
+
+    const handleOnPressBtn = () => {
+        setColSwitch(!colSwitch);
+        navigation.navigate('Home');
+    }
 
     return (
         <View>
-            {/* <button onClick={() => backToHome()}>Back to songsearch</button> */}
+            <Button onPress={() => handleOnPressBtn()}
+                title='Back to homescreen'
+                buttonStyle={{
+                    backgroundColor: '#89b9cc',
+                    borderRadius: 3,
+                    width: 120,
+                    marginTop: 10
+                }}
+                titleStyle={{ color: '#222831' }}
+            />
             <Text>{message}</Text>
         </View>
     )

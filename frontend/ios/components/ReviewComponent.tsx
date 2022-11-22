@@ -5,9 +5,7 @@ import { AirbnbRating, Button } from "react-native-elements";
 import { CREATE_REVIEW, GET_REVIEWS } from "../helpers/queries";
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
+//This component creates reviews for a specific song
 function ReviewComponent({ songID }: { songID: number }) {
 
     // these are the variables for each field for the review, and the message is an error message

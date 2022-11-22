@@ -9,12 +9,13 @@ import { Dimensions } from 'react-native';
 import { useSetRecoilState } from 'recoil';
 import { orientationAtom } from '../shared/globalState';
 
+//Defines the interface for the songScreen prop
 interface SongScreenProps {
     route: RouteProp<RootStackParamList, "SongScreen">
     navigation: NavigationProp<RootStackParamList, "SongScreen">
 }
-
-const SongScreen = ({ route, navigation }: SongScreenProps) => {
+//This screen displays the detailed info about a song and all the methods of reviews
+const SongScreen = ({ route }: SongScreenProps) => {
 
     const isPortrait = () => {
         const dim = Dimensions.get('screen');
@@ -29,7 +30,7 @@ const SongScreen = ({ route, navigation }: SongScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView style={{width: '100%'}}>
+            <ScrollView style={{ width: '100%' }}>
                 <SongDetails songID={route.params.songID} />
                 <ReviewComponent songID={route.params.songID} />
                 <ListReviews songID={route.params.songID} />
