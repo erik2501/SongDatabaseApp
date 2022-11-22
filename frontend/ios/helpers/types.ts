@@ -3,7 +3,6 @@ import { StackScreenProps } from "@react-navigation/stack";
 export type RootStackParamList = {
     Home: undefined;
     SongScreen: { songID: number };
-    ErrorPage: undefined;
 };
 
 export type SongScreenProps = StackScreenProps<RootStackParamList, 'SongScreen'>;

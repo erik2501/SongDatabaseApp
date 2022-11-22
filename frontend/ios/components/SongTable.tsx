@@ -1,18 +1,16 @@
 import { NetworkStatus, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { RootStackParamList, Song } from "../helpers/types";
-import ErrorPage from "../screens/ErrorPage";
 import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
 import { yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 
 interface SongTableProps {
-    navigationHome: NavigationProp<RootStackParamList, "Home">;
-    navigationError: NavigationProp<RootStackParamList, "ErrorPage">;
+    navigation: NavigationProp<RootStackParamList, "Home">;
 }
 
 interface GetSongsQueryResult {
@@ -20,7 +18,7 @@ interface GetSongsQueryResult {
 }
 
 // This component displays the songs on the homepage. 
-const SongTable = ({ navigationHome, navigationError }: SongTableProps) => {
+const SongTable = ({ navigation }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
@@ -65,13 +63,13 @@ const SongTable = ({ navigationHome, navigationError }: SongTableProps) => {
 
     const refreshing = networkStatus === NetworkStatus.refetch;
 
-    if (error) return <ErrorPage message={`Error! ${error.message}`} navigation={navigationError} />;
+    if (error) return <Text>`Error! ${error.message}`</Text>
 
     return (
         <View style={{ height: '100%', width: '100%', alignSelf: 'center' }}>
             <FlashList
                 data={songs}
-                renderItem={({ item }) => <SongCard song={item} navigation={navigationHome} />}
+                renderItem={({ item }) => <SongCard song={item} navigation={navigation} />}
                 keyExtractor={(item, index) => index.toString()}
                 onEndReachedThreshold={0}
                 onEndReached={handleOnEndReached}

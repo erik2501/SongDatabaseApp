@@ -17,9 +17,9 @@ export default function App() {
   const Stack = createStackNavigator<RootStackParamList>();
 
   return (
-    <NavigationContainer>
-      <RecoilRoot>
-        <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <RecoilRoot>
           <Stack.Navigator initialRouteName='Home' screenOptions={() => ({headerStyle: {backgroundColor: 'red'}})}>
             <Stack.Screen name='Home' component={HomeScreen}
               options={{
@@ -36,9 +36,9 @@ export default function App() {
               initialParams={{ songID: 0 }}
             />
           </Stack.Navigator>
-        </ApolloProvider>
-      </RecoilRoot>
-    </NavigationContainer>
+        </RecoilRoot>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
 
