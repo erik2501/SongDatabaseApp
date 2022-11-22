@@ -17,7 +17,7 @@ npm start
 ```
 OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring.
 
-![Alt text](/frontend/assets/icon.png)
+![Alt text](/frontend/assets/Screenshot 2022-11-22 at 13.29.03.png)
 
 For å ta i bruk applikasjonen finnes det to ulike metoder som du kan velge mellom:
 
