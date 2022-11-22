@@ -1,92 +1,48 @@
-# project4
+# Prosjekt 4
 
 
 
-## Getting started
+## Hvordan kjøre prosjetet
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Klon prosjektet fra gitlab
+** git@gitlab.stud.idi.ntnu.no:it2810-h22/Team-14/project4.git **
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Skriv følgende kommandoer i et terminalvindu på prosjektmappens plassering:
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-14/project4.git
-git branch -M main
-git push -uf origin main
+cd frontend
+npm install
+npm start
 ```
 
-## Integrate with your tools
+Bruk Xcode/Android studio eller last ned Expo Go på mobil og scann QR-koden i terminalen med kamera. Man må være på NTNU-nett eller bruke VPN for å kjøre appen.
 
-- [ ] [Set up project integrations](https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-14/project4/-/settings/integrations)
 
-## Collaborate with your team
+## Beskrivelse av oppgave
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+I prosjekt 4 bestemte gruppen seg for å gjøre oppgave a; bygge den samme applikasjonen som i prosjekt 3, bare for mobil-app ved bruk av React Native. Gruppen har brukt den samme databasen og backenden som i prosjekt 3, og gjenbrukt mye av koden. 
 
-## Test and Deploy
+## Beskrivelse av applikasjonen
 
-Use the built-in continuous integration in GitLab.
+I applikasjonen kan man sortere og filtrere på en liste med de mest populære sangene fra 1999 til 2019. Det er implementert søkefunksjonalitet på både artist og navn på sang, samt at man kan sortere sangene stigende eller synkende ut fra når sangen var en top hit på spotify. Til slutt kan man filtrere sangene på et bestemt årstall. For at filtrene ikke skulle ta så mye plass på mobilskjerm, har gruppen valgt å implementere en egen modal som kun vises ved å trykke på "filter". Fra forrige prosjekt har gruppen gått bort fra paginering og heller valgt å implementere infinity scroll ettersom vi mener dette sørger for økt brukervennlighet. For å gjennomføre dette har vi brukt fetchMore-funksjonen fra apollo. For hver gang brukeren når bunnen av listen med sanger blir denne funksjonen kalt, dette gjøres ved at den skipper antall sanger som allerede er lastet inn i databasen, og henter de 10 neste. Oppdateringsfunksjonen onUpdate() slår sammen listen med sanger som er lastet inn fra før og listen med de nye 10 elementene.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Bruk av React Native
 
-***
+Gruppen har satt opp en ny frontend med React Native expo-cli, og brukt Apollo Client for React Native for å koble til backend, slik som i prosjekt 3. Gruppen har brukt flere bibliotek for å lage applikasjonen ettersom noen av de bibliotekene brukt i prosjekt 3 ikke støttet React Native. React Navigation er brukt for å navigere mellom de forskjellige sidene og Recoil state management er brukt for å håndtere states som skal brukes i flere komponenter. React-native-elements er brukt flere steder, blant annet i filtrene. Dette biblioteket er godt dokumentert og sørget for kontinuitet i brukergrensesnittet. Shopify er et bibliotek vi har brukt for å implementere FlashList som er brukt for å implementere infinite scroll. 
 
-# Editing this README
+## Bærekraftig utvikling
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+På forrige prosjekt fikk gruppen tilbakemelding om at siden kunne vært mer bærekraftig. I dette prosjektet har gruppen derfor implementert mørk modus på hele siden, ettersom dette krever mindre energi og fører til økt batteritid hos klient. Et annet grep gruppen har tatt er å legge ved en knapp for å aktivere filtrering istedenfor et delay på 500 millisekunder som var tilfellet ved forrige prosjekt, på denne måten gjennomføres det ikke flere API kall enn det som er strengt nødvendig. I tillegg til at dette er mer bærekraftig ettersom det reduserer nettrafikk, er det også positivt for eventuelle app-brukere ettersom man gjerne bruker mobildata på mobil, og mange vil dermed være opptatt av mindre data-lasting. Man kan argumentere for at det å bruke bilder er negativt med tanke på bærekraft, men vi mener her at det er nyttig informasjon med tanke på dataen vi presenterer.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Universell utforming
 
-## Name
-Choose a self-explaining name for your project.
+Vi har tatt flere grep for å sørge for at applikasjonen har god universell utforming. Et av grepene er å gjøre tekst tydelig ved å bruke kontraster, samt ha relativt store skriftstørrelser (relativt ift. at det er på mobilskjerm og begrenset skriftstørrelse-bruk) .Et annet grep vi har gjennomført er å teste at applikasjonen støtter Dynamisk skrift som kan velges i Innstillinger på IOS-enheter. Dette gjør at brukere med synshemninger kan selv øke skriftstørrelse om dette skulle være ønskelig. Det har også vært et felles mål i gruppen om å holde applikasjonen så oversiktlig som mulig ettersom dette sørger for et enklere brukergrensesnitt.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Testing
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Gruppen har testet applikasjonen ved brukertesting. Den er testet på forskjellige IOS skjermer både mobil og ipad, ved bruk av Xcode, og expo Go appen. Her har gruppen testet både i portrett og i landskapsmodus, og implementert funksjonalitet for å håndtere begge deler. Gruppen har også brukt Android studio for å teste applikasjonen på en Google Pixel 3a med Android Tiramisu.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
