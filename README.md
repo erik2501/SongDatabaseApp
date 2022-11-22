@@ -15,7 +15,7 @@ cd frontend
 npm install
 npm start
 ```
-OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring.
+OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring. Da skal det se slik ut:
 
 <img src="/frontend/assets/Screenshot 2022-11-22 at 13.29.03.png" alt="drawing" width="400"/>
 
