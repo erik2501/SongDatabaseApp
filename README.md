@@ -6,6 +6,7 @@
 
 Klone git-repoet fra gitlab med følgende link:
 > SSH:      git@gitlab.stud.idi.ntnu.no:it2810-h22/Team-14/project4.git
+
 > HTTPS:    https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-14/project4.git
 
 Skriv følgende kommandoer i et terminalvindu på prosjektmappens plassering:
