@@ -17,6 +17,8 @@ npm start
 ```
 OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring.
 
+![Alt text](/frontend/assets/icon.png)
+
 For å ta i bruk applikasjonen finnes det to ulike metoder som du kan velge mellom:
 
 1. Bruk Xcode/Android studio direkte fra din mac/PC. Dette anbefales hvis du allerede har lastet ned et av disse programmene før ettersom det vil ta litt plass på harddisk. Her skal det bare være å følge terminalmenyen som dukker opp under QR-koden. Trykk i for iPhone og a for android. OBS! Husk at macen / pcen du kjører fra må være tilknyttet NTNU-nett for at data fra database på VM skal dukke opp. Anbefaler Cisco AnyConnect for å koble til skolens vpn (se link https://i.ntnu.no/wiki/-/wiki/norsk/installere+vpn) dersom du ikke sitter på skolenett.
