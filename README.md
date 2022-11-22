@@ -4,7 +4,7 @@
 
 ## Hvordan kjøre prosjetet
 
-Klon prosjektet fra gitlab
+Klon prosjektet fra gitlab med følgende link:
 > git@gitlab.stud.idi.ntnu.no:it2810-h22/Team-14/project4.git
 
 Skriv følgende kommandoer i et terminalvindu på prosjektmappens plassering:
