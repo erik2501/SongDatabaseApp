@@ -7,10 +7,10 @@ import ListReviews from "../components/ListReviewComponent";
 import { useSetRecoilState } from 'recoil';
 import { orientationAtom } from '../shared/globalState';
 
+//Defines the interface for the songScreen prop
 interface SongScreenProps {
     route: RouteProp<RootStackParamList, "SongScreen">
 }
-
 const SongScreen = ({ route }: SongScreenProps) => {
 
     // Function that returns true if the screen is in portrait mode, and false if in landscape mode
@@ -28,7 +28,7 @@ const SongScreen = ({ route }: SongScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView style={{width: '100%'}}>
+            <ScrollView style={{ width: '100%' }}>
                 <SongDetails songID={route.params.songID} />
                 <ReviewComponent songID={route.params.songID} />
                 <ListReviews songID={route.params.songID} />

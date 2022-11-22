@@ -15,6 +15,7 @@ interface SongCardProps {
 
 const SongCard = ({ song, navigation }: SongCardProps) => {
 
+    //This query gets and calculates the average score for each song
     const { data } = useQuery(GET_AVG_REVIEW_SCORE, { variables: { songID: song.songID } })
     const [ colSwitch, setColSwitch ] = useState<boolean>(true);
     const orientation = useRecoilValue(orientationAtom);
