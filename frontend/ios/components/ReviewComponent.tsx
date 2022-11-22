@@ -44,6 +44,7 @@ const ReviewComponent = ({ songID }: { songID: number }) => {
                 showRating={false}
                 size={19}
                 reviewSize={15}
+                defaultRating={0}
                 onFinishRating={setStar} />
             <TextInput
                 style={styles.inputRev}
