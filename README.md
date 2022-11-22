@@ -4,8 +4,9 @@
 
 ## Hvordan kjøre prosjetet
 
-Klon prosjektet fra gitlab med følgende link:
-> git@gitlab.stud.idi.ntnu.no:it2810-h22/Team-14/project4.git
+Klone git-repoet fra gitlab med følgende link:
+> SSH:      git@gitlab.stud.idi.ntnu.no:it2810-h22/Team-14/project4.git
+> HTTPS:    https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-14/project4.git
 
 Skriv følgende kommandoer i et terminalvindu på prosjektmappens plassering:
 
@@ -14,9 +15,16 @@ cd frontend
 npm install
 npm start
 ```
+OBS! Dette kan ta litt tid etterom det er mange pakker som kreves ved førstegangskjøring.
 
-Bruk Xcode/Android studio eller last ned Expo Go på mobil og scann QR-koden i terminalen med kamera. Man må være på NTNU-nett eller bruke VPN for å kjøre appen.
+For å ta i bruk applikasjonen finnes det to ulike metoder som du kan velge mellom:
 
+1. Bruk Xcode/Android studio direkte fra din mac/PC. Dette anbefales hvis du allerede har lastet ned et av disse programmene før ettersom det vil ta litt plass på harddisk. Her skal det bare være å følge terminalmenyen som dukker opp under QR-koden. Trykk i for iPhone og a for android. OBS! Husk at macen / pcen du kjører fra må være tilknyttet NTNU-nett for at data fra database på VM skal dukke opp. Anbefaler Cisco AnyConnect for å koble til skolens vpn (se link https://i.ntnu.no/wiki/-/wiki/norsk/installere+vpn) dersom du ikke sitter på skolenett.
+
+2. Bruk applikasjonen Expo Go på mobil og scann QR-koden i terminalen med kamera. 
+OBS! Husk at mobilen du kjører fra må være tilknyttet NTNU-nett for at data fra database på VM skal dukke opp. Anbefaler Cisco AnyConnect (for mobil) for å koble til skolens vpn dersom du ikke sitter på skolenett.
+
+Skulle det oppstå noen tekniske feil ved kjøring anbefaler vi å trykke på r (reload) i terminalmenyen. Hvis ikke dette fungerer så avslutt server med "control + c" og kjør "npm start" på nytt.
 
 ## Beskrivelse av oppgave
 
