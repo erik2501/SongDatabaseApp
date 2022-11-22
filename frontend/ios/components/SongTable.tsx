@@ -74,6 +74,7 @@ const SongTable = ({ navigation }: SongTableProps) => {
                 onRefresh={refetch}
                 refreshing={refreshing}
                 estimatedItemSize={200}
+                ListFooterComponentStyle={{marginBottom: 100}}
             />
         </View>
     )
