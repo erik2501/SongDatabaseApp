@@ -1,21 +1,19 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, StyleSheet, Dimensions } from "react-native";
 import SongDetails from "../components/SongDetails";
-import { StyleSheet } from "react-native";
 import { RootStackParamList } from "../helpers/types";
-import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
 import ReviewComponent from "../components/ReviewComponent";
 import ListReviews from "../components/ListReviewComponent";
-import { Dimensions } from 'react-native';
 import { useSetRecoilState } from 'recoil';
 import { orientationAtom } from '../shared/globalState';
 
 interface SongScreenProps {
     route: RouteProp<RootStackParamList, "SongScreen">
-    navigation: NavigationProp<RootStackParamList, "SongScreen">
 }
 
-const SongScreen = ({ route, navigation }: SongScreenProps) => {
+const SongScreen = ({ route }: SongScreenProps) => {
 
+    // Function that returns true if the screen is in portrait mode, and false if in landscape mode
     const isPortrait = () => {
         const dim = Dimensions.get('screen');
         return dim.height >= dim.width;
@@ -23,6 +21,7 @@ const SongScreen = ({ route, navigation }: SongScreenProps) => {
 
     const setOrientation = useSetRecoilState(orientationAtom);
 
+    // EventListener that updates the orientationAtom when phone-orientation is changed
     Dimensions.addEventListener('change', () => {
         setOrientation(isPortrait());
     });

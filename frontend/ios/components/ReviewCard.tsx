@@ -1,14 +1,9 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { AirbnbRating } from "react-native-ratings";
 import { reviewProp } from "../helpers/types";
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-const cardWidth = windowWidth * 0.9;
-
-
-export default function ReviewCard(props: reviewProp) {
+const ReviewCard = (props: reviewProp) => {
     return (
         <View style={styles.container}>
             <Text style={styles.textName}>{props.userName}</Text>
@@ -32,7 +27,6 @@ const styles = StyleSheet.create({
         shadowColor: '#333',
         shadowOpacity: 0.3,
         shadowRadius: 2,
-        marginHorizontal: cardWidth * 0.05,
         marginVertical: 8,
         alignItems: 'center',
         padding:5
@@ -47,3 +41,5 @@ const styles = StyleSheet.create({
         color: 'lightgrey'
     }
 })
+
+export default ReviewCard;

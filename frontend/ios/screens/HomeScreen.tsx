@@ -1,22 +1,20 @@
 import React from 'react';
-import { View, SafeAreaView } from "react-native";
+import { SafeAreaView, Dimensions } from "react-native";
 import SongTable from '../components/SongTable';
 import { NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../helpers/types";
 import SearchbarComponent from "../components/Searchbar";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { Dimensions } from 'react-native';
 import { useSetRecoilState } from 'recoil';
 import { orientationAtom } from '../shared/globalState';
-
-
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "Home">
 }
 
-export default function HomeScreen({ navigation }: HomeScreenProps) {
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
+  // Function that returns true if the screen is in portrait mode, and false if in landscape mode
   const isPortrait = () => {
     const dim = Dimensions.get('screen');
     return dim.height >= dim.width;
@@ -24,6 +22,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
   const setOrientation = useSetRecoilState(orientationAtom);
 
+  // EventListener that updates the orientationAtom when phone-orientation is changed
   Dimensions.addEventListener('change', () => {
       setOrientation(isPortrait());
   });
@@ -37,3 +36,5 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     </SafeAreaView>
   );
 }
+
+export default HomeScreen;

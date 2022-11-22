@@ -1,14 +1,10 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { AirbnbRating, Button } from "react-native-elements";
 import { CREATE_REVIEW, GET_REVIEWS } from "../helpers/queries";
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-function ReviewComponent({ songID }: { songID: number }) {
+const ReviewComponent = ({ songID }: { songID: number }) => {
 
     // these are the variables for each field for the review, and the message is an error message
     const [star, setStar] = useState<number | null>()
@@ -33,7 +29,6 @@ function ReviewComponent({ songID }: { songID: number }) {
     }
 
     if (loading) return <Text>'Submitting...'</Text>;
-
 
     return (
         <View style={styles.reviewContainer}>
@@ -111,6 +106,5 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 });
-
 
 export default ReviewComponent;

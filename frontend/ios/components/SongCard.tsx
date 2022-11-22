@@ -1,35 +1,23 @@
 import { useQuery } from "@apollo/client";
 import { NavigationProp } from "@react-navigation/native";
 import { useState } from "react";
-import { Image, Dimensions, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { AirbnbRating, Button } from "react-native-elements";
 import { GET_AVG_REVIEW_SCORE } from "../helpers/queries";
 import { RootStackParamList, Song } from "../helpers/types";
 import { useRecoilValue } from 'recoil';
 import { orientationAtom } from '../shared/globalState';
 
-
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-const cardWidth = windowWidth * 0.9;
-const cardHeight = windowHeight * 0.2;
-
 interface SongCardProps {
     song: Song,
     navigation: NavigationProp<RootStackParamList, "Home">
 }
 
-
-function SongCard({ song, navigation }: SongCardProps) {
+const SongCard = ({ song, navigation }: SongCardProps) => {
 
     const { data } = useQuery(GET_AVG_REVIEW_SCORE, { variables: { songID: song.songID } })
-    const [colSwitch, setColSwitch] = useState<boolean>(true);
-
-
+    const [ colSwitch, setColSwitch ] = useState<boolean>(true);
     const orientation = useRecoilValue(orientationAtom);
-
 
     const handleOnPressBtn = () => {
         setColSwitch(!colSwitch);
@@ -77,22 +65,19 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 6,
         elevation: 3,
-        backgroundColor: '#343b45',//'#e0e0e0',
+        backgroundColor: '#343b45',
         shadowOffset: { width: 1, height: 1 },
         shadowColor: '#333',
         shadowOpacity: 0.3,
         shadowRadius: 2,
-        marginHorizontal: cardWidth * 0.05,
         marginVertical: 16,
         padding: 20,
-        // marginHorizontal: 18,
-        // marginVertical: 20,
         flexDirection: 'row',
         justifyContent: 'flex-start'
     },
     cardImg: {
-        width: 120,//windowWidth * 0.3,
-        height: 120//windowWidth * 0.3
+        width: 120,
+        height: 120
     },
     cardInfo: {
         flex: 1,
@@ -113,6 +98,5 @@ const styles = StyleSheet.create({
         color: 'lightgrey'
     }
 });
-
 
 export default SongCard;
