@@ -4,9 +4,9 @@ import { RootStackParamList, Song } from "../helpers/types";
 import ErrorPage from "../screens/ErrorPage";
 import SongCard from "./SongCard";
 import { useRecoilValue } from 'recoil';
-import { offsetAtom, yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
+import { yearAtom, searchWordAtom, orderAtom, pageSizeAtom } from '../shared/globalState';
 import { GET_SEARCH } from "../helpers/queries";
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 
@@ -18,16 +18,12 @@ interface GetSongsQueryResult {
     songSearch: Song[];
 }
 
-// definerer debounce funksjonen vår 
-// const debounceFetch = debounce((fetchFunc: () => void) => fetchFunc())
-
 // This component displays the songs on the homepage. 
 const SongTable = ({ navigation }: SongTableProps) => {
 
     // We are using Recoil State Management to get the filtering variables possibly set in the searchbar 
     // and the offset set in pagination
     const searchWord = useRecoilValue(searchWordAtom);
-    const offset = useRecoilValue(offsetAtom);
     const year = useRecoilValue(yearAtom);
     const order = useRecoilValue(orderAtom);
     const pageSize = useRecoilValue(pageSizeAtom);
@@ -39,13 +35,13 @@ const SongTable = ({ navigation }: SongTableProps) => {
 
     useEffect(() => {
         if (data) {
-            // console.log(data.songSearch.length)
             setSongs(data.songSearch);
         }
     }, [data])
 
     const onUpdate = (prev: GetSongsQueryResult, { fetchMoreResult }: {fetchMoreResult: GetSongsQueryResult}): GetSongsQueryResult => {
         if (!fetchMoreResult) return prev;
+        // merging the old list of songs with the new songs that are fetched with the new query
         const localSongs = [
             ...prev.songSearch,
             ...fetchMoreResult.songSearch,
@@ -55,9 +51,11 @@ const SongTable = ({ navigation }: SongTableProps) => {
         });
     };
 
+    // function loading in new songs when the bottom of the page is reached
     const handleOnEndReached = () => {
         return fetchMore({
             variables: {
+                // skips the number of songs that are already on the page and loads in the next 10
                 skip: data?.songSearch.length,
                 amount: pageSize,
             },
